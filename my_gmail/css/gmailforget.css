@@ -1,0 +1,55 @@
+#outer{
+    height: 600px;
+    width: 800px;
+    background-color: whitesmoke;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 15px;
+}
+#i{
+    height: 300px;
+    mix-blend-mode:saturation;
+    sahadow
+} 
+#img{
+    float: left;
+    border-radius: 10000px 10000px 10000px 10000px;
+    mix-blend-mode:darken;
+    height: 80px;
+}
+#h{
+    float:left;
+    color: ;
+    text-shadow: 5px 5px 10px black; 
+}
+#email{
+    height: 35px;
+    width: 500px;
+    box-shadow: rgba(71, 12, 12, 0.56) 0px 22px 70px 4px;
+}
+#pas{
+    height: 35px;
+    width: 500px;
+    box-shadow:  rgba(71, 12, 12, 0.56) 0px 22px 70px 4px;
+}
+#submit{
+    height: 50px;
+    width: 100px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+nav{
+    background-color:transparent;
+    overflow: hidden;
+    height:100px;
+    width: aoto;
+    background-color:;
+    border-radius: 
+}
+nav a {
+
+    text-decoration: none;
+    padding: 300px;
+    text-align:start;
+    float:center;
+    color:blueviolet;
+    text-shadow: 5px 5px 10px black; 
+}

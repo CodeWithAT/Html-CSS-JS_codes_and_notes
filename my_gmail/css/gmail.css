@@ -1,0 +1,64 @@
+#box{
+    height: 745px;
+    width: 600px;
+    background-color:whitesmoke;
+    /* box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    border-radius: 15px;
+    color: light;
+}
+#img{
+    float: left;
+    border-radius: 10000px 10000px 10000px 10000px;
+    mix-blend-mode:darken;
+    height: 80px;
+    
+}
+#i{
+    height: 300px;
+    mix-blend-mode:saturation;
+    sahadow
+}
+#h1{
+    float:left;
+    color: ;
+    text-shadow: 5px 5px 10px black; 
+}
+
+#email{
+    height: 35px;
+    width: 500px;
+    box-shadow: rgba(71, 12, 12, 0.56) 0px 22px 70px 4px;
+}
+#password{
+    height: 35px;
+    width: 500px;
+    box-shadow:  rgba(71, 12, 12, 0.56) 0px 22px 70px 4px;
+}
+#submit{
+    height: 50px;
+    width: 100px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+#forget{
+    height: 50px;
+    width: 50px; 
+}
+
+nav{
+    background-color:lightgoldenrodyellow;
+    overflow: hidden;
+    height:150px;
+    width: 590px;
+    background-color:;
+    border-radius: 
+}
+nav a {
+
+    text-decoration: none;
+    padding: 40px;
+    text-align: center;
+    float:left;
+    color:blueviolet;
+}
+
