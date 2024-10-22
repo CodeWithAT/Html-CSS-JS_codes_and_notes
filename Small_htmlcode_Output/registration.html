@@ -1,0 +1,122 @@
+{% extends "parent.html" %}
+{% block main %}
+<script>
+function validate()
+{
+  var rollno=document.getElementById("rollno");
+  var name=document.getElementById("name")
+  var fname=document.getElementById("fname")
+  var mname=document.getElementById("mname")
+  var contactno=document.getElementById("contactno")
+  var emailaddress=document.getElementById("emailaddress")
+  var password=document.getElementById("password")
+  var confirmpassword=document.getElementById("confirmpassword")
+}
+</script>
+  <h1 style="text-align: center;">Student registration form</h1>
+  <form class="form-group" id="frmregistration" method="post" onsubmit="event.preventDefault();validate();">
+    {% csrf_token %}
+    <table class="table" style="width: 80%; margin:auto;">
+      <tr>
+        <td>Enter roll No</td>
+        <td>
+          <input type="number" name="rollno" class="form-control" id="rollno" />
+        </td>
+      </tr>
+      <tr>
+        <td>Enter Name</td>
+        <td>
+          <Input type="text" name="name" class="form-control" id="name"/>
+        </td>
+      </tr>
+      </tr>
+      <tr>
+        <td>Enter Father Name</td>
+        <td>
+          <Input type="text" name="name" class="form-control" id="fname"/>
+        </td>
+      <tr>
+        <td>Enter Mother Name</td>
+        <td>
+          <Input type="text" name="name" class="form-control" id="mname"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Select Gender</td>
+        <td>
+          <input type="radio" name="gender" value="Male" class="form-check-input"/>Male
+          <input type="radio" name="gender" value="femal" class="form-check-input"/>Female
+        </td>
+      </tr>
+      <tr>
+        <td>Enter address</td>
+        <td>
+          <textarea name="address" class="form-control"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>Select Program</td>
+        <td>
+          <select name="Program" class="form-control">
+            <option>-select program-</option>
+            <option value="B.Tech">B.Tech</option>
+            <option value="M.Tech">M.Tech</option>
+            <option value="Diploma">Diploma</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Select Branch</td>
+        <td>
+          <select name="Branch" class="form-control">
+          <option selected>-select Branch-</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Information Technology">Information Technology</option>
+          <option value="Electronic Engineering">Electronic Engineering</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Select Year</td>
+        <td>
+          <select name="Select Year" class="form-control">
+          <option selected>-select Year-</option>
+          <option value="First Year">First year</option>
+          <option value="Second Year">Second year</option>
+          <option value="Third Year">Third year</option>
+          <option value="Final Year">Final year</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Enter Contact No</td>
+        <td>
+          <input type="number" name="Contactno" class="form-control" id="Contactno"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Email Address</td>
+        <td>
+          <input type="text" name="enmailaddress" class="form-control" id="emailaddress"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>
+          <input type="password" name="Password" class="form-control" id="password">
+        </td>
+      </tr>
+      <tr>
+        <td>Confirm Password</td>
+        <td>
+          <input type="password" name="Confirm Password" class="form-control" id="Confirmpassword">
+        </td>
+      </tr>
+      <td>&nbsp;</td>
+        <td>
+          <button type="Register" class="btn btn-danger">Register</button>
+        </td>
+      </tr>
+    </table>
+  </form>   
+{% endblock main %}
