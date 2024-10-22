@@ -1,0 +1,121 @@
+#outer{
+height:1000px;
+width:1000px;
+border:1px solid;
+}
+#box1{
+height:350px;
+width:410px;
+background-color:red;
+float:left;
+}
+#col{
+height:350px;
+width:163px;
+float:left;
+//background-color:pink;
+}
+.path{
+height:48px;
+width:52px;
+border:1px solid;
+float:left;
+}
+#box2{
+height:350px;
+width:427px;
+background-color:blue;
+float:left;
+}
+.pathR{
+height:48px;
+width:52px;
+border:1px solid;
+background-color:red;
+float:left;
+}
+.pathB{
+height:48px;
+width:52px;
+border:1px solid;
+background-color:blue;
+float:left;
+}
+.colH{
+height:163px;
+width:410px;
+float:left;
+//background-color:black;
+}
+.path2{
+height:48px;
+width:56px;
+border:1px solid;
+float:left;
+}
+.path2R{
+height:48px;
+width:56px;
+border:1px solid;
+background-color:red;
+float:left;
+}
+#lull{
+height:150px;
+width:163px;
+border:1px solid;
+float:left;
+}
+.colH2{
+height:163px;
+width:424px;
+float:left;
+//background-color:black;
+}
+.path3{
+height:48px;
+width:58px;
+border:1px solid;
+float:left;
+}
+#box3{
+height:400px;
+width:400px;
+background-color:green;
+float:left;
+}
+#colV{
+height:400px;
+width:170px;
+float:left;
+//background-color:pink;
+}
+.path4{
+height:48px;
+width:52px;
+border:1px solid;
+float:left;
+}
+.path4G{
+height:48px;
+width:52px;
+border:1px solid;
+background-color:green;
+float:left;
+}
+#box4{
+height:400px;
+width:425px;
+background-color:yellow;
+float:left;
+}
+.path3Y{
+height:48px;
+width:58px;
+border:1px solid;
+float:left;
+background-color:yellow;
+}
+
+
+
