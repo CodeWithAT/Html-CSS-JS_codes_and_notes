@@ -1,0 +1,16 @@
+#main{
+    height: 100%;
+    width: 100%;
+    background-color: beige;
+    /* Difference between flex row and column */
+    display: flex;
+    /* flex-direction: row; */
+    flex-direction: column;
+}
+.box{
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+    background-color: crimson;
+    border-radius: 20px;
+}

@@ -1,0 +1,15 @@
+#main{
+    height: 100%;
+    width: 100%;
+    gap:20px;
+    background-color: beige;
+    display: flex;
+    
+}
+.box{
+    height: 200px;
+    width: 300px;
+    background-color: aqua;
+    display: flex;
+    justify-content:space-around;
+}

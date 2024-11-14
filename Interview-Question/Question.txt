@@ -1,0 +1,29 @@
+CSS Day1 Interview Question.
+===============================================================
+Difference between flex row and column
+> The flex row and column is the roperties of the property of display flex.
+*>row=>in this the task perform in the row manner.
+*>column=>in this the task perform in the column manner.
+As you can see in this flex.html file .
+------------------------------------------------------------------
+Explain inline , internal and external stylesheet
+> Inline styles are defined within the opening tag. 
+> Internal styles are defined within the head section.
+> External styles are defined in a separate CSS file.
+As you can see in this stylesheet.html file.
+-----------------------------------------------------------------
+Justify-content allows you to do what?
+> Justify-content allows you to control the alignment of items.
+> It can be used to justify the content in the center, space-between,space-around, space-evenly.
+As you can see in this justify.html file.
+-----------------------------------------------------------------
+Difference between absolute and relative positioning
+---------------------------------------------------------------
+What is the z-index in CSS?
+>Z-index has there property and those index which has higher property then its placed on top.
+-----------------------------------------------------------------
+What is the difference between padding and margin?
+> The padding is the space between the content and the border.
+> The margin is the space between the border and the other elements.
+As you can see in this padding-margin.html.
+------------------------------------------------------------------
