@@ -1,0 +1,175 @@
+.main-body {
+    background-color: rgb(128, 128, 128);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-header {
+    border: 8px solid red;
+    width: 500px;
+    height: 160px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 10px 10px 1px purple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    text-shadow: 2px 1px 2px purple;
+  }
+  
+  .main-header h2 {
+    text-align: center;
+    color: purple;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+  
+  .middle-body {
+    border: 8px solid green;
+    height: 800px;
+  }
+  
+  .address-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+  }
+  .address-container .address {
+    width: 200px;
+    height: 260px;
+    border: 8px solid red;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    text-shadow: 2px 1px 2px purple;
+    padding: 10px;
+    box-shadow: 10px 10px 5px purple;
+  }
+  .address-container .address h3 {
+    color: purple;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+  
+  .address-card {
+    width: 200px;
+    height: 275px;
+    border: 8px solid red;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px purple;
+    display: flex;
+    align-items: center;
+    background-color: white;
+  }
+  
+  .address-bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .address-bottom .address {
+    width: 210px;
+    height: 260px;
+    border: 8px solid red;
+    border-radius: 10px;
+    background-color: white;
+  
+    text-shadow: 2px 1px 2px purple;
+    padding: 10px;
+    box-shadow: 10px 10px 5px purple;
+  }
+  
+  .address-bottom .rating {
+    width: 210px;
+    height: 285px;
+    border: 8px solid red;
+    border-radius: 10px;
+    background-color: white;
+    text-shadow: 2px 1px 2px purple;
+    box-shadow: 10px 10px 5px purple;
+  }
+  
+  .input {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input span {
+    text-align: center;
+  }
+  
+  .input input {
+    width: 150px;
+    align-self: center;
+  }
+  
+  .footer {
+    width: 60%;
+    border: 8px solid blueviolet;
+    margin: 10px auto;
+    background-color: green;
+  }
+  
+  .footer h2 {
+    text-align: center;
+  }
+  
+  .footer .my-store {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+  }
+  .footer .my-store .fruits {
+    background-color: yellow;
+    padding: 0px 20px 20px 20px;
+    font-style: italic;
+    width: 380px;
+  }
+  
+  .footer .my-store .vegetables {
+    background-color: yellow;
+    width: 380px;
+  
+    padding: 0px 20px 20px 20px;
+    font-style: italic;
+  }
+  
+  .other-items {
+    background-color: yellow;
+    font-style: italic;
+    margin: 0px 15px 50px 15px;
+    padding-bottom: 3px;
+    text-align: center;
+  }
+  
+  .other-items h4 {
+    margin: 10px;
+  }
+  
+  .footer-fix {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+  
+    top: 550px;
+    left: 460px;
+  }
+  
+  .exciting-offer {
+    background-color: green;
+    width: 500px;
+    display: flex;
+    border: 8px solid red;
+    box-shadow: 10px 10px 5px purple;
+    border-radius: 10px;
+    justify-content: space-around;
+    align-items: center;
+  }

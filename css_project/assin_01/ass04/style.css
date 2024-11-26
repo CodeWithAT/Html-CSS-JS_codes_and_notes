@@ -1,0 +1,178 @@
+.header {
+    text-decoration: underline;
+    text-align: center;
+    background-image: linear-gradient(to right, red, green, 70%, yellow);
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .nav-bar {
+    border: 3px solid red;
+    border-radius: 20px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    background-color: #40e0d0;
+    margin: 15px auto;
+    font-weight: bold;
+  }
+  
+  .container-three {
+    background-color: #7fffd4;
+    height: 190px;
+    border: 2px solid black;
+    border-radius: 20px;
+  }
+  
+  .container-three .content-one {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  .container-three .content-one div {
+    background-color: aqua;
+    width: 350px;
+    height: 60px;
+    text-align: center;
+    padding: 20px 20px 10px 10px;
+    border: 1px solid green;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left: 50px;
+  }
+  
+  .content-two {
+    margin-top: 3px;
+    height: 60px;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .content-two div {
+    width: 350px;
+    height: 60px;
+    border: 2px solid green;
+    border-radius: 10px;
+    background-color: aqua;
+    padding: 20px 20px 10px 10px;
+    margin-left: -200px;
+  }
+  
+  .mid-heading {
+    text-decoration: underline;
+    text-align: center;
+    background-image: linear-gradient(to right, red, yellow, 70%, red);
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .students-name {
+    background: radial-gradient(blue, aqua, green);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .students-name div {
+    background-color: yellow;
+    width: 200px;
+    border: 1px solid red;
+    border-radius: 10px;
+    text-align: center;
+    color: brown;
+    height: 100px;
+    padding-bottom: 10px;
+  }
+  
+  .students-name div p {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .footer-grid {
+    width: 85%;
+  
+    border: 2px solid black;
+  }
+  
+  .footer-grid .main-heading-footer {
+    background-color: red;
+    color: white;
+    text-align: center;
+  }
+  .footer-content {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    gap: 5px;
+  }
+  .footer-content .left {
+    display: grid;
+    gap: 5px;
+  }
+  .footer-content .left .top {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5px;
+    color: white;
+  
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .footer-content .left .top .top-one {
+    background-color: #90ee90;
+    padding: 20px;
+    padding-top: 0px;
+    text-align: center;
+  }
+  
+  .footer-content .left .top .top-one p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .footer-content .left .top .top-two {
+    background-color: #add8e6;
+  }
+  .footer-content .left .top .top-two p {
+    margin-top: 0px;
+    font-size: 24px;
+  }
+  .footer-content .left .top .top-three {
+    background-color: #0000ff;
+  }
+  .footer-content .left .top .top-three p {
+    margin-top: 0px;
+    font-size: 21px;
+  }
+  .footer-content .left .top .top-one h2 {
+    background-color: #90ee90;
+    margin-top: 0px;
+    padding: 0 10px 10px 10px;
+  }
+  
+  .footer-content .left .bottom {
+    background-color: #ffa500;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .footer-content .left .bottom p {
+    margin-top: 0px;
+  }
+  
+  .footer-content .right {
+    background-color: black;
+    color: white;
+    margin-right: 20%;
+  }
+  
+  .footer-content .right ol {
+    text-decoration: underline;
+  }
+  
+  .footer-grid .main-heading-bottom {
+    background-color: cyan;
+    margin-bottom: 0px;
+    text-align: center;
+  }
