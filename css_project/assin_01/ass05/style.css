@@ -1,0 +1,173 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: gilroy;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-image: url(thumb-1920-992792.jpg);
+    background-position:center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+
+
+body{
+    
+    background-size: cover;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 20px;
+}
+#logo{
+    height: 50px;
+    width: 50px;
+}
+a{
+    color: white;
+    margin-right: 30px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+}
+.manu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (min-width:360px) and (max-width:640px){
+    .manu{
+        width: 500px;
+    }
+    .main-2{
+        width: 500px;
+        height: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        /* margin-bottom: 0px; */
+    }
+    .main-3{
+        width: 500px;
+        height: 430px;
+        display: flex;
+        flex-wrap: wrap; 
+    }
+    .main-3 div {
+        height: 150px;
+        width: 400px;
+        border-radius: 15px;
+        background-size: cover;
+        margin-bottom: 20px;
+    }
+    .img-1{
+        position: absolute;
+    }
+    .img-2{
+        position: absolute;
+        top: 175px;
+        right: 430px;
+    }
+    .img-3{
+        position: absolute;
+        top: 140px;
+    }
+    .img-4{
+        position: absolute;
+        top: 320px;
+        right: 430px;
+    }
+
+}
+.menu2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#men{
+    height: 30px;
+    width: 30px;
+}
+.main-3{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.main-2{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.p1{
+    font-size: 100px;
+    color: white;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+p{
+    color: white;
+}
+.img-1,.img-2,.img-3,.img-4{
+    height: 200px;
+    width: 170px;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 15px;
+    background-image: url(Mercedes-Benz-GLS.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: ease;
+    transition-duration: 1s;
+}
+.img-1:hover{
+    margin-top: 5px;
+    
+}
+.img-2:hover{
+    margin-top: 5px;
+}
+.img-3:hover{
+    margin-top: 5px;
+}
+.img-4:hover{   
+    margin-top: 5px;
+}
+.img-2{
+    background-image: url(20240813101410_Mercedes-Benz-E-class.avif);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img-3{
+    background-image: url(cover_67330cc70a6b5.avif);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img-4{
+    background-image: url(mercedes-g-wagen.avif);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.small{
+    font-size: smaller;
+}
+button{
+    color: black;
+    border: none;
+    background-color: white;
+    border-radius: 20px;
+    height: 35px;
+    width: 160px;  
+    font-weight: bold;
+    font-size: small;
+    padding: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 15px;
+}
