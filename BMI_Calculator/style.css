@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-image: url(/BMI_Calculator/bg2.jpg);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    overflow: hidden;
+
+    
+    
+}   
+
+.header h1{
+    text-align: center;
+    height: 70px;
+    width:800px;
+    /* color:; */
+    font-size: 50px;
+    /* margin-bottom: 20px; */
+    background-color:  rgba(174, 168, 163, 0.629);
+    /* background-color:  rgba#fab79b; */
+    backdrop-filter: blur(10px 50px );
+    border-radius: 10px;
+    position: relative;
+    top:50px ;
+    left:23%;
+}
+
+.main {
+    height: 500px;
+    width:800px;
+    font-size: 40px;
+    background-color:  rgba(174, 168, 163, 0.878);
+    /* backdrop-filter: blur(10px); */
+    border-radius: 10px;
+    position: absolute;
+    top: 25%;
+    left: 23%;
+    
+}
+.main label{
+    position: absolute;
+    font-size: 35px;
+    /* color: #ac6420bd; */
+    /* margin-bottom:  -50px; */
+    margin-top: 40px;
+    margin-left: 300px;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+}
+.main input{
+    text-align: center;
+    font-size:20px;
+    height: 50px;
+    width: 450px;
+    color: rgb(43, 226, 107) ;
+    /* padding: 10px; */
+    margin-top: 48px;
+    margin-left:175px ;
+    border-radius: 30px;
+}
+input:hover{
+    transition-duration: 0.2s;
+    scale: 1.02;
+}
+button {
+    padding: 15px;
+    margin-left:340px ;
+    font-size: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+    /* display: block;*/
+}
+button:hover{
+    scale: 1.09;
+    font-size: 21px;
+    transition-duration: 0.3s;
+    background-color:rgb(236, 234, 213);
+    color: rgb(43, 226, 107) ;
+    border: cri;
+}
+
+p{
+    text-align: center;
+    padding: 13px;
+    height: 50px;
+    width: 800px;
+    background-color: rgba(174, 168, 163, 0.629);
+    font-size: 20px;
+    margin-top: 20px;
+    
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+}
+a {
+    height: 50px;
+    width: 400px;
+    position:fixed;
+    top: 86%;
+    left: 44%;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.458);
+    font-size: 20px;
+   
+    /* background-color: red; */
+}
+a:hover{
+    
+    transition-duration: 0.3s;
+}
+a img{
+    height: 27px;
+    width: 30px;
+   padding-top: 8px;
+    
+}
+a img:hover{
+    scale: 1.1;
+    transition-duration: 0.3s;
+}
+
+
