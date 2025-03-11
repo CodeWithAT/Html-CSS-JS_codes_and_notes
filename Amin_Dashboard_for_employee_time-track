@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Employee Time Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            background-color: #343a40;
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1.25rem;
+        }
+        .sidebar .nav-link:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .sidebar .nav-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .stats-card {
+            border-left: 4px solid;
+        }
+        .card-body h5 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .card-body .big-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 col-lg-2 d-md-block sidebar collapse p-0">
+                <div class="position-sticky">
+                    <div class="py-4 px-3 mb-4 bg-dark">
+                        <div class="text-center">
+                            <h4 class="m-0">TimeTracker</h4>
+                            <div class="small">Admin Dashboard</div>
+                        </div>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-users"></i> Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-clock"></i> Time Logs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-project-diagram"></i> Projects
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-chart-bar"></i> Reports
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 ms-sm-auto col-lg-10 main-content">
+                <!-- Top navigation bar -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 rounded">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".sidebar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="d-flex align-items-center ms-auto">
+                            <div class="dropdown">
+                                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="user-dropdown" data-bs-toggle="dropdown">
+                                    <img src="/api/placeholder/40/40" class="rounded-circle me-2" alt="Admin">
+                                    <span>Admin User</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Dashboard Content -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="mb-4">Dashboard Overview</h2>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row mb-4">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card border-0 shadow-sm h-100" style="border-left-color: #4e73df !important;">
+                            <div class="card-body">
+                                <h5 class="text-primary">Active Employees</h5>
+                                <div class="big-number">45</div>
+                                <div class="text-muted small">Currently clocked in: 32</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card border-0 shadow-sm h-100" style="border-left-color: #1cc88a !important;">
+                            <div class="card-body">
+                                <h5 class="text-success">Total Hours Today</h5>
+                                <div class="big-number">187.5</div>
+                                <div class="text-muted small">Average: 5.8 hrs/person</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card border-0 shadow-sm h-100" style="border-left-color: #36b9cc !important;">
+                            <div class="card-body">
+                                <h5 class="text-info">Active Projects</h5>
+                                <div class="big-number">12</div>
+                                <div class="text-muted small">On schedule: 10</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card stats-card border-0 shadow-sm h-100" style="border-left-color: #f6c23e !important;">
+                            <div class="card-body">
+                                <h5 class="text-warning">Pending Approvals</h5>
+                                <div class="big-number">8</div>
+                                <div class="text-muted small">Time-off requests: 5</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Employee Status -->
+                <div class="row mb-4">
+                    <!-- Employee Status -->
+                    <div class="col-lg-8 mb-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-header bg-white py-3">
+                                <h6 class="m-0 font-weight-bold">Employee Status</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Employee</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Project</th>
+                                                <th scope="col">Time</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle me-2" alt="">
+                                                        <div>John Smith</div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>Website Redesign</td>
+                                                <td>5h 23m</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle me-2" alt="">
+                                                        <div>Emily Johnson</div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>Mobile App Development</td>
+                                                <td>4h 15m</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle me-2" alt="">
+                                                        <div>Michael Brown</div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-secondary">Away</span></td>
+                                                <td>Server Migration</td>
+                                                <td>2h 45m</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle me-2" alt="">
+                                                        <div>Sarah Davis</div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-danger">Offline</span></td>
+                                                <td>Database Optimization</td>
+                                                <td>0h 0m</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle me-2" alt="">
+                                                        <div>David Wilson</div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>Content Management</td>
+                                                <td>3h 50m</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary">Details</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-header bg-white py-3">
+                                <h6 class="m-0 font-weight-bold">Recent Activity</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeline">
+                                    <div class="d-flex mb-3">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-sign-in-alt text-success me-2"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0"><strong>John Smith</strong> clocked in</p>
+                                            <small class="text-muted">Today, 08:30 AM</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-tasks text-primary me-2"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0"><strong>Emily Johnson</strong> started working on <strong>Mobile App Development</strong></p>
+                                            <small class="text-muted">Today, 09:15 AM</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-sign-out-alt text-danger me-2"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0"><strong>Sarah Davis</strong> clocked out</p>
+                                            <small class="text-muted">Today, 12:30 PM</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-calendar-alt text-warning me-2"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0"><strong>David Wilson</strong> requested time off</p>
+                                            <small class="text-muted">Today, 01:45 PM</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-check-circle text-success me-2"></i>
+                                        </div>
+                                        <div>
+                                            <p class="mb-0"><strong>Project Milestone</strong> completed for <strong>Website Redesign</strong></p>
+                                            <small class="text-muted">Today, 02:30 PM</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-white py-3">
+                                <h6 class="m-0 font-weight-bold">Quick Actions</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <button class="btn btn-primary w-100"><i class="fas fa-plus me-2"></i> Add Employee</button>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <button class="btn btn-success w-100"><i class="fas fa-file-export me-2"></i> Export Reports</button>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <button class="btn btn-info w-100"><i class="fas fa-calendar-plus me-2"></i> Schedule Meeting</button>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <button class="btn btn-warning w-100"><i class="fas fa-envelope me-2"></i> Send Notification</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
