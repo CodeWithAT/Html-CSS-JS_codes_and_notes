@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeTrack - Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: white;
+        }
+        .active-timer {
+            background-color: rgba(25, 135, 84, 0.1);
+            border-left: 4px solid #198754;
+        }
+        .timer-badge {
+            width: 80px;
+        }
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .summary-card {
+            border-left: 4px solid;
+            transition: transform 0.2s;
+        }
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+        .chart-container {
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2 col-md-3 d-none d-md-block sidebar p-0">
+                <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <i class="fas fa-clock me-2"></i>
+                        <span class="fs-4">TimeTrack</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active text-white" aria-current="page">
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                                <i class="fas fa-list me-2"></i>
+                                Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                                <i class="fas fa-tasks me-2"></i>
+                                Tasks
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                Reports
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                                <i class="fas fa-users me-2"></i>
+                                Team
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/api/placeholder/32/32" alt="user profile" width="32" height="32" class="rounded-circle me-2">
+                            <strong>John Doe</strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-10 col-md-9 ms-sm-auto px-md-4 py-4">
+                <!-- Navbar for mobile -->
+                <nav class="navbar navbar-expand-md d-md-none navbar-dark bg-dark mb-4">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#"><i class="fas fa-clock me-2"></i>TimeTrack</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Tasks</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Reports</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Team</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Header -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                            <i class="fas fa-calendar me-1"></i>
+                            This week
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="row g-3 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card summary-card border-success h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Today</h6>
+                                        <h3 class="card-title mb-0">4h 35m</h3>
+                                    </div>
+                                    <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-clock fs-4 text-success"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0">
+                                    <span class="text-success">
+                                        <i class="fas fa-arrow-up me-1"></i>12%
+                                    </span>
+                                    compared to yesterday
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card summary-card border-primary h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">This Week</h6>
+                                        <h3 class="card-title mb-0">28h 15m</h3>
+                                    </div>
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-calendar-week fs-4 text-primary"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0">
+                                    <span class="text-success">
+                                        <i class="fas fa-arrow-up me-1"></i>8%
+                                    </span>
+                                    compared to last week
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card summary-card border-warning h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Projects</h6>
+                                        <h3 class="card-title mb-0">7 Active</h3>
+                                    </div>
+                                    <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-folder fs-4 text-warning"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0">2 nearing deadline</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card summary-card border-info h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Tasks</h6>
+                                        <h3 class="card-title mb-0">23 Pending</h3>
+                                    </div>
+                                    <div class="bg-info bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-tasks fs-4 text-info"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0">5 due today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timer Section -->
+                <div class="row mb-4">
+                    <div class="col-lg-7">
+                        <div class="card h-100">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">Current Timer</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="active-timer p-3 rounded mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h5 class="mb-1">Website Redesign</h5>
+                                            <span class="text-muted">UI/UX Improvements</span>
+                                        </div>
+                                        <div>
+                                            <span class="fs-4 fw-bold text-success">01:45:23</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-success me-1">Design</span>
+                                            <span class="badge bg-primary">Client A</span>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-secondary me-2">
+                                                <i class="fas fa-pause me-1"></i>Pause
+                                            </button>
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-stop me-1"></i>Stop
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6>Start New Timer</h6>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-5">
+                                        <select class="form-select" aria-label="Project select">
+                                            <option selected>Select Project</option>
+                                            <option value="1">Website Redesign</option>
+                                            <option value="2">Mobile App Development</option>
+                                            <option value="3">Marketing Campaign</option>
+                                            <option value="4">SEO Optimization</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select class="form-select" aria-label="Task select">
+                                            <option selected>Select Task</option>
+                                            <option value="1">UI Design</option>
+                                            <option value="2">Frontend Development</option>
+                                            <option value="3">Backend Integration</option>
+                                            <option value="4">Testing</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success w-100">
+                                            <i class="fas fa-play me-1"></i>Start
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 mt-4 mt-lg-0">
+                        <div class="card h-100">
+                            <div class="card-header bg-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Recent Timers</h5>
+                                    <a href="#" class="text-decoration-none">View All</a>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item p-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">Mobile App Development</h6>
+                                                <small class="text-muted">API Integration</small>
+                                            </div>
+                                            <div>
+                                                <span class="badge bg-secondary timer-badge">2h 15m</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item p-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">Website Redesign</h6>
+                                                <small class="text-muted">Frontend Development</small>
+                                            </div>
+                                            <div>
+                                                <span class="badge bg-secondary timer-badge">1h 40m</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item p-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">Marketing Campaign</h6>
+                                                <small class="text-muted">Content Creation</small>
+                                            </div>
+                                            <div>
+                                                <span class="badge bg-secondary timer-badge">45m</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item p-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">SEO Optimization</h6>
+                                                <small class="text-muted">Keyword Research</small>
+                                            </div>
+                                            <div>
+                                                <span class="badge bg-secondary timer-badge">30m</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Projects Section -->
+                <div class="row mb-4">
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Weekly Hours</h5>
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-outline-secondary active">Week</button>
+                                        <button type="button" class="btn btn-outline-secondary">Month</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <!-- Placeholder for chart -->
+                                    <div class="d-flex h-100 flex-column justify-content-center align-items-center">
+                                        <img src="/api/placeholder/600/300" class="img-fluid" alt="Weekly hours chart">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">Project Distribution</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <!-- Placeholder for chart -->
+                                    <div class="d-flex h-100 flex-column justify-content-center align-items-center">
+                                        <img src="/api/placeholder/300/300" class="img-fluid" alt="Project distribution chart">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Active Projects</h5>
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="fas fa-plus me-1"></i>New Project
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col">Project</th>
+                                                <th scope="col">Client</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Team</th>
+                                                <th scope="col">Deadline</th>
+                                                <th scope="col">Hours Logged</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="project-icon bg-primary bg-opacity-10 me-3">
+                                                            <i class="fas fa-laptop text-primary"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h6 class="mb-0">Website Redesign</h6>
+                                                            <small class="text-muted">E-commerce platform</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Client A</td>
+                                                <td><span class="badge bg-warning">In Progress</span></td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                    </div>
+                                                </td>
+                                                <td>Mar 28, 2025</td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar bg-success" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <small>42h / 65h</small>
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="project-icon bg-success bg-opacity-10 me-3">
+                                                            <i class="fas fa-mobile-alt text-success"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h6 class="mb-0">Mobile App Development</h6>
+                                                            <small class="text-muted">iOS and Android</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Client B</td>
+                                                <td><span class="badge bg-success">On Track</span></td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                    </div>
+                                                </td>
+                                                <td>Apr 15, 2025</td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar bg-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <small>32h / 80h</small>
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="project-icon bg-info bg-opacity-10 me-3">
+                                                            <i class="fas fa-bullhorn text-info"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h6 class="mb-0">Marketing Campaign</h6>
+                                                            <small class="text-muted">Social media</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Client C</td>
+                                                <td><span class="badge bg-danger">Delayed</span></td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                        <img src="/api/placeholder/32/32" class="rounded-circle" width="32" height="32" alt="Team member">
+                                                    </div>
+                                                </td>
+                                                <td>Mar 20, 2025</td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <small>30h / 40h</small>
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
+                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white text-center">
+                                <a href="#" class="text-decoration-none">Show All Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
