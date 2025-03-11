@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tracker Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .clock-icon {
+            font-size: 3rem;
+            color: #0d6efd;
+        }
+        .status-active {
+            color: #198754;
+        }
+        .status-inactive {
+            color: #dc3545;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .summary-card {
+            border-left: 4px solid #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-clock me-2"></i>TimeTrack
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Team</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>John Doe
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Employee Dashboard</h1>
+            <div id="current-time" class="text-muted"></div>
+        </div>
+
+        <!-- Time Tracking Card -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card dashboard-card">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h4 class="card-title">Current Status</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Wednesday, March 11, 2025</h6>
+                            <p class="status-active fs-5"><i class="fas fa-circle me-2"></i>Working</p>
+                            <p>Started at: 09:00 AM</p>
+                            <p>Current session: 2h 13m</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-user-clock clock-icon mb-3"></i>
+                            <div>
+                                <button class="btn btn-danger me-2"><i class="fas fa-pause me-1"></i>Take Break</button>
+                                <button class="btn btn-primary"><i class="fas fa-stop me-1"></i>End Day</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card h-100 summary-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Today</h5>
+                        <h2>2h 13m</h2>
+                        <p class="card-text text-muted">Of 8h 00m</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card h-100 summary-card">
+                    <div class="card-body">
+                        <h5 class="card-title">This Week</h5>
+                        <h2>18h 45m</h2>
+                        <p class="card-text text-muted">Of 40h 00m</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card h-100 summary-card">
+                    <div class="card-body">
+                        <h5 class="card-title">This Month</h5>
+                        <h2>76h 30m</h2>
+                        <p class="card-text text-muted">Of 160h 00m</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card h-100 summary-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Overtime</h5>
+                        <h2>4h 20m</h2>
+                        <p class="card-text text-success">+2h 15m this week</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Today's Activities -->
+        <div class="row mb-4">
+            <div class="col-lg-8 mb-3">
+                <div class="card dashboard-card h-100">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Today's Activities</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Task</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Website Redesign</td>
+                                        <td>Homepage Layout</td>
+                                        <td>1h 25m</td>
+                                        <td><span class="badge bg-success">Completed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marketing Campaign</td>
+                                        <td>Email Templates</td>
+                                        <td>0h 48m</td>
+                                        <td><span class="badge bg-warning text-dark">In Progress</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Client Meeting</td>
+                                        <td>Project Review</td>
+                                        <td>0h 30m</td>
+                                        <td><span class="badge bg-success">Completed</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <div class="card dashboard-card h-100">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Quick Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary w-100 mb-3">
+                            <i class="fas fa-plus-circle me-2"></i>New Time Entry
+                        </button>
+                        <button class="btn btn-outline-secondary w-100 mb-3">
+                            <i class="fas fa-file-alt me-2"></i>Submit Weekly Report
+                        </button>
+                        <button class="btn btn-outline-secondary w-100 mb-3">
+                            <i class="fas fa-calendar-alt me-2"></i>Request Time Off
+                        </button>
+                        <button class="btn btn-outline-secondary w-100">
+                            <i class="fas fa-sync-alt me-2"></i>Sync Calendar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Tasks -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card dashboard-card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Upcoming Tasks</h5>
+                        <button class="btn btn-sm btn-outline-primary">View All</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Task</th>
+                                        <th>Project</th>
+                                        <th>Priority</th>
+                                        <th>Due Date</th>
+                                        <th>Est. Hours</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Client Presentation</td>
+                                        <td>Marketing Campaign</td>
+                                        <td><span class="badge bg-danger">High</span></td>
+                                        <td>Mar 12, 2025</td>
+                                        <td>4.0</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Start</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database Optimization</td>
+                                        <td>Backend Development</td>
+                                        <td><span class="badge bg-warning text-dark">Medium</span></td>
+                                        <td>Mar 13, 2025</td>
+                                        <td>6.0</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Start</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>User Testing</td>
+                                        <td>Website Redesign</td>
+                                        <td><span class="badge bg-info">Low</span></td>
+                                        <td>Mar 15, 2025</td>
+                                        <td>2.5</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Start</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Display current time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
