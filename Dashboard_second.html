@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tracker Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            height: 100vh;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .nav-link {
+            color: #495057;
+        }
+        .nav-link.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+        .task-card {
+            border-left: 4px solid #0d6efd;
+        }
+        .timer-display {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky">
+                    <div class="text-center mb-4">
+                        <h4>TimeTracker</h4>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-list-task me-2"></i>Projects
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-calendar me-2"></i>Calendar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-file-text me-2"></i>Reports
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-people me-2"></i>Team
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-gear me-2"></i>Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <i class="bi bi-plus-lg"></i> New Task
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Timer Section -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <select class="form-select mb-2">
+                                    <option selected>Select Project</option>
+                                    <option>Website Development</option>
+                                    <option>Mobile App Design</option>
+                                    <option>Marketing Campaign</option>
+                                </select>
+                                <select class="form-select">
+                                    <option selected>Select Task</option>
+                                    <option>Frontend Development</option>
+                                    <option>Backend API Integration</option>
+                                    <option>UI Design</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="timer-display mb-2">00:00:00</div>
+                                <div class="btn-group">
+                                    <button class="btn btn-success">
+                                        <i class="bi bi-play-fill"></i> Start
+                                    </button>
+                                    <button class="btn btn-warning">
+                                        <i class="bi bi-pause-fill"></i> Pause
+                                    </button>
+                                    <button class="btn btn-danger">
+                                        <i class="bi bi-stop-fill"></i> Stop
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="notes" style="height: 100px"></textarea>
+                                    <label for="notes">Notes</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Today</h5>
+                                <h2>3h 24m</h2>
+                                <p class="text-muted">4 tasks completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">This Week</h5>
+                                <h2>18h 42m</h2>
+                                <p class="text-muted">+12% from last week</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">This Month</h5>
+                                <h2>76h 15m</h2>
+                                <p class="text-muted">65% of monthly goal</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Pending Tasks</h5>
+                                <h2>7</h2>
+                                <p class="text-muted">2 due today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <h4 class="mb-3">Recent Activity</h4>
+                <div class="list-group mb-4">
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Website Development</h5>
+                            <small class="text-muted">2h 15m</small>
+                        </div>
+                        <p class="mb-1">Frontend Development - Homepage redesign</p>
+                        <small class="text-muted">Today, 10:30 AM - 12:45 PM</small>
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Mobile App Design</h5>
+                            <small class="text-muted">1h 10m</small>
+                        </div>
+                        <p class="mb-1">User flow diagrams and wireframes</p>
+                        <small class="text-muted">Today, 8:45 AM - 9:55 AM</small>
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Marketing Campaign</h5>
+                            <small class="text-muted">45m</small>
+                        </div>
+                        <p class="mb-1">Social media content creation</p>
+                        <small class="text-muted">Yesterday, 3:15 PM - 4:00 PM</small>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
