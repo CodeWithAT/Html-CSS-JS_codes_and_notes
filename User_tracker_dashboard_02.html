@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Time Tracker</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Clock Card */
+        .clock-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .clock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .clock-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .clock-info p {
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .clock-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .clock-in {
+            background-color: #2563eb;
+        }
+
+        .clock-in:hover {
+            background-color: #1d4ed8;
+        }
+
+        .clock-out {
+            background-color: #ef4444;
+        }
+
+        .clock-out:hover {
+            background-color: #dc2626;
+        }
+
+        .clock-status {
+            background-color: #dbeafe;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .clock-status-time {
+            color: #2563eb;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .clock-duration {
+            color: #4b5563;
+            font-weight: 600;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 400px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            color: #4b5563;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #d1d5db;
+            color: #1f2937;
+        }
+
+        /* Time Records Table */
+        .records-table {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f9fafb;
+            padding: 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6b7280;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem;
+            border-top: 1px solid #f3f4f6;
+            color: #4b5563;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .modal {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 500px;
+            max-width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel {
+            background-color: transparent;
+            border: none;
+            color: #6b7280;
+        }
+
+        .btn-cancel:hover {
+            color: #1f2937;
+        }
+
+        .btn-confirm {
+            background-color: #2563eb;
+            border: none;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .clock-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .search-filter {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
+        }
+
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <span>⏱️</span>
+            <span>TimeTracker</span>
+        </div>
+        <div class="user-info">
+            <div class="user-avatar">JD</div>
+            <span>John Doe</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Clock Card -->
+        <div class="clock-card">
+            <div class="clock-header">
+                <div class="clock-info">
+                    <h2 id="current-date">Monday, March 17, 2025</h2>
+                    <p><span>🕒</span> <span id="current-time">09:41 AM</span></p>
+                </div>
+                <button id="clock-btn" class="clock-btn clock-in">
+                    <span>⏰</span>
+                    <span>Clock In</span>
+                </button>
+            </div>
+            <div id="clock-status" class="clock-status" style="display: none;">
+                <div class="clock-status-time">
+                    <span>⏱️</span>
+                    <span>Clocked in at: <span id="clock-in-time">08:30 AM</span></span>
+                </div>
+                <div class="clock-duration">
+                    Current session: <span id="session-duration">0h 0m</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="search-filter">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Search by date, reason...">
+            </div>
+            <button class="filter-btn">
+                <span>📊</span>
+                <span>Filter</span>
+            </button>
+        </div>
+
+        <!-- Time Records Table -->
+        <div class="records-table">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Clock In</th>
+                            <th>Clock Out</th>
+                            <th>Total Hours</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-body">
+                        <!-- Table rows will be added by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="exit-modal" class="modal-overlay">
+        <div class="modal">
+            <h3>Clock Out</h3>
+            <div class="form-group">
+                <label for="exit-reason">Reason for leaving</label>
+                <select id="exit-reason">
+                    <option value="">Select a reason</option>
+                    <option value="End of day">End of day</option>
+                    <option value="Lunch break">Lunch break</option>
+                    <option value="Doctor appointment">Doctor appointment</option>
+                    <option value="Personal errand">Personal errand</option>
+                    <option value="Remote work">Switching to remote work</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div id="other-reason-group" class="form-group" style="display: none;">
+                <label for="other-reason">Specify reason</label>
+                <textarea id="other-reason" rows="3" placeholder="Please specify your reason for leaving..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-btn" class="btn btn-cancel">Cancel</button>
+                <button id="confirm-btn" class="btn btn-confirm">Confirm Clock Out</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample time records
+        let timeRecords = [
+            { date: 'March 14, 2025', clockIn: '08:45 AM', clockOut: '05:30 PM', totalHours: '8h 45m', reason: 'End of day' },
+            { date: 'March 13, 2025', clockIn: '09:02 AM', clockOut: '04:15 PM', totalHours: '7h 13m', reason: 'Doctor appointment' },
+            { date: 'March 12, 2025', clockIn: '08:30 AM', clockOut: '05:45 PM', totalHours: '9h 15m', reason: 'End of day' },
+            { date: 'March 11, 2025', clockIn: '08:15 AM', clockOut: '06:00 PM', totalHours: '9h 45m', reason: 'End of day' },
+        ];
+
+        // DOM elements
+        const currentDateEl = document.getElementById('current-date');
+        const currentTimeEl = document.getElementById('current-time');
+        const clockBtn = document.getElementById('clock-btn');
+        const clockStatus = document.getElementById('clock-status');
+        const clockInTimeEl = document.getElementById('clock-in-time');
+        const sessionDurationEl = document.getElementById('session-duration');
+        const searchInput = document.getElementById('search-input');
+        const records
