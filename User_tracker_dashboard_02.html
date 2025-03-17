@@ -1,551 +1,442 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Time Tracker</title>
     <style>
-        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: #f5f7fa;
+            background-color: #f0f2f5;
             color: #333;
         }
-
-        /* Header Styles */
-        header {
-            background-color: #2563eb;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background-color: #dbeafe;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #2563eb;
-            font-weight: bold;
-        }
-
-        /* Navigation */
-        .nav-tabs {
-            display: flex;
-            margin-top: 2rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .nav-tab {
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            font-weight: 500;
-            color: #6b7280;
-            transition: all 0.2s ease;
-        }
-
-        .nav-tab:hover {
-            color: #2563eb;
-        }
-
-        .nav-tab.active {
-            color: #2563eb;
-            border-bottom: 3px solid #2563eb;
-        }
-
-        /* Main Container */
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 20px;
         }
-
-        /* Clock Card */
-        .clock-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .clock-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .clock-info h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .clock-info p {
-            color: #6b7280;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .clock-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            border: none;
+        
+        header {
+            background-color: #4361ee;
             color: white;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .clock-in {
-            background-color: #2563eb;
-        }
-
-        .clock-in:hover {
-            background-color: #1d4ed8;
-        }
-
-        .clock-out {
-            background-color: #ef4444;
-        }
-
-        .clock-out:hover {
-            background-color: #dc2626;
-        }
-
-        .clock-status {
-            background-color: #dbeafe;
-            border: 1px solid #bfdbfe;
-            border-radius: 8px;
-            padding: 1rem;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .clock-status-time {
-            color: #2563eb;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        
+        h1 {
+            font-size: 24px;
         }
-
-        .clock-duration {
-            color: #4b5563;
-            font-weight: 600;
-        }
-
-        /* Search and Filter */
-        .search-filter {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
+        
         .search-bar {
-            position: relative;
-            width: 400px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-
-        .search-bar input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-        }
-
-        .filter-btn {
             display: flex;
             align-items: center;
-            gap: 5px;
             background-color: white;
-            border: 1px solid #e5e7eb;
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            color: #4b5563;
-            font-weight: 500;
+            border-radius: 5px;
+            padding: 8px 12px;
+            width: 300px;
+        }
+        
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px;
+        }
+        
+        .search-bar button {
+            background: none;
+            border: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            color: #4361ee;
         }
-
-        .filter-btn:hover {
-            border-color: #d1d5db;
-            color: #1f2937;
-        }
-
-        /* Time Records Table */
-        .records-table {
+        
+        .card {
             background-color: white;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s;
         }
-
+        
+        .time-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-clock-in {
+            background-color: #4cc9f0;
+            color: white;
+        }
+        
+        .btn-clock-out {
+            background-color: #f72585;
+            color: white;
+        }
+        
+        .btn-edit {
+            background-color: #4895ef;
+            color: white;
+        }
+        
+        .status-display {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-time {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4361ee;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
-
-        th {
-            background-color: #f9fafb;
-            padding: 1rem;
+        
+        th, td {
+            padding: 12px 15px;
             text-align: left;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: #6b7280;
-            letter-spacing: 0.05em;
+            border-bottom: 1px solid #ddd;
         }
-
-        td {
-            padding: 1rem;
-            border-top: 1px solid #f3f4f6;
-            color: #4b5563;
+        
+        th {
+            background-color: #f0f7ff;
+            font-weight: bold;
         }
-
+        
         tr:hover {
-            background-color: #f9fafb;
+            background-color: #f5f5f5;
         }
-
-        /* Modal */
-        .modal-overlay {
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-in {
+            background-color: #d1fadf;
+            color: #0f5132;
+        }
+        
+        .status-out {
+            background-color: #ffe8e8;
+            color: #b02a37;
+        }
+        
+        .action-btns {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #4361ee;
+        }
+        
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            display: none;
         }
-
-        .modal {
+        
+        .modal-content {
             background-color: white;
+            padding: 20px;
             border-radius: 10px;
-            padding: 2rem;
             width: 500px;
             max-width: 90%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s;
         }
-
-        .modal h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
-
-        .form-group {
-            margin-bottom: 1rem;
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
         }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #4b5563;
-        }
-
-        .form-group select,
-        .form-group textarea,
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-
-        .form-group select:focus,
-        .form-group textarea:focus,
-        .form-group input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
+        
         .modal-footer {
+            margin-top: 20px;
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            margin-top: 1.5rem;
         }
-
-        .btn {
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-
-        .btn-cancel {
-            background-color: transparent;
-            border: none;
-            color: #6b7280;
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Employee Time Tracker</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search employee...">
+                <button id="searchBtn">Search</button>
+            </div>
+        </header>
+        
+        <div class="card">
+            <h2>Time Tracking</h2>
+            <div class="status-display">
+                <div>
+                    <h3 id="employeeName">John Doe</h3>
+                    <p id="employeeStatus">Currently: <span class="status-badge status-in">Clocked In</span></p>
+                </div>
+                <div class="status-time" id="currentTime">08:45:22</div>
+            </div>
+            
+            <div class="time-controls">
+                <button class="btn btn-clock-in" id="clockInBtn">Clock In</button>
+                <button class="btn btn-clock-out" id="clockOutBtn">Clock Out</button>
+                <button class="btn btn-edit" id="editBtn">Edit Details</button>
+            </div>
+            
+            <div id="clockOutForm" style="display: none;">
+                <div class="form-group">
+                    <label for="exitReason">Reason for leaving:</label>
+                    <select class="form-control" id="exitReason">
+                        <option value="end-of-shift">End of Shift</option>
+                        <option value="lunch-break">Lunch Break</option>
+                        <option value="personal-errand">Personal Errand</option>
+                        <option value="meeting">External Meeting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group" id="otherReasonGroup" style="display: none;">
+                    <label for="otherReason">Specify reason:</label>
+                    <input type="text" class="form-control" id="otherReason">
+                </div>
+                <button class="btn btn-clock-out" id="confirmClockOut">Confirm Clock Out</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Employee History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Clock In</th>
+                        <th>Clock Out</th>
+                        <th>Duration</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTable">
+                    <tr>
+                        <td>Mar 17, 2025</td>
+                        <td>08:00 AM</td>
+                        <td>--</td>
+                        <td>45m 22s</td>
+                        <td>--</td>
+                        <td><span class="status-badge status-in">Clocked In</span></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="action-btn" data-index="0">Edit</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mar 16, 2025</td>
+                        <td>08:15 AM</td>
+                        <td>05:30 PM</td>
+                        <td>9h 15m</td>
+                        <td>End of Shift</td>
+                        <td><span class="status-badge status-out">Clocked Out</span></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="action-btn" data-index="1">Edit</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mar 15, 2025</td>
+                        <td>08:30 AM</td>
+                        <td>04:45 PM</td>
+                        <td>8h 15m</td>
+                        <td>End of Shift</td>
+                        <td><span class="status-badge status-out">Clocked Out</span></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="action-btn" data-index="2">Edit</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Time Entry</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editDate">Date:</label>
+                    <input type="date" class="form-control" id="editDate">
+                </div>
+                <div class="form-group">
+                    <label for="editClockIn">Clock In Time:</label>
+                    <input type="time" class="form-control" id="editClockIn">
+                </div>
+                <div class="form-group">
+                    <label for="editClockOut">Clock Out Time:</label>
+                    <input type="time" class="form-control" id="editClockOut">
+                </div>
+                <div class="form-group">
+                    <label for="editReason">Reason:</label>
+                    <select class="form-control" id="editReason">
+                        <option value="end-of-shift">End of Shift</option>
+                        <option value="lunch-break">Lunch Break</option>
+                        <option value="personal-errand">Personal Errand</option>
+                        <option value="meeting">External Meeting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group" id="editOtherReasonGroup" style="display: none;">
+                    <label for="editOtherReason">Specify reason:</label>
+                    <input type="text" class="form-control" id="editOtherReason">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-edit" id="saveEdit">Save Changes</button>
+            </div>
+        </div>
+    </div>
 
-        .btn-cancel:hover {
-            color: #1f2937;
+    <script>
+        // Current time display
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('currentTime').textContent = timeString;
         }
-
-        .btn-confirm {
-            background-color: #2563eb;
-            border: none;
-            color: white;
-        }
-
-        .btn-confirm:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* Tab Content */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Employee History */
-        .employee-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .employee-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .employee-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #dbeafe;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-right: 1rem;
-        }
-
-        .employee-info {
-            flex: 1;
-        }
-
-        .employee-name {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .employee-position {
-            color: #6b7280;
-            font-size: 0.875rem;
-        }
-
-        .employee-stats {
-            display: flex;
-            gap: 1rem;
-            margin-left: auto;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: #6b7280;
-        }
-
-        /* Time History */
-        .time-history-wrapper {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        .history-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .history-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .history-filter {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .history-filter button {
-            padding: 0.5rem 1rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            background-color: white;
-            color: #4b5563;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .history-filter button.active {
-            background-color: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
-
-        .time-chart {
-            height: 300px;
-            margin-bottom: 2rem;
-            background-color: #f9fafb;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chart-bars {
-            display: flex;
-            align-items: flex-end;
-            height: 250px;
-            gap: 20px;
-            padding: 0 20px;
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-        }
-
-        .chart-bar {
-            flex: 1;
-            background-color: #93c5fd;
-            position: relative;
-            border-radius: 4px 4px 0 0;
-            transition: all 0.3s ease;
-        }
-
-        .chart-bar:hover {
-            background-color: #3b82f6;
-        }
-
-        .chart-bar-label {
-            position: absolute;
-            bottom: -25px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #6b7280;
-        }
-
-        .chart-bar-value {
-            position: absolute;
-            top: -25px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #4b5563;
-        }
-
-        /* Summary Stats */
-        .summary-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .summary-stat {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .summary-stat-title {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .summary-stat-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #111827;
+        
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call
+        
+        // Clock in/out functionality
+        const clockInBtn = document.getElementById('clockInBtn');
+        const clockOutBtn = document.getElementById('clockOutBtn');
+        const confirmClockOutBtn = document.getElementById('confirmClockOut');
+        const clockOutForm = document.getElementById('clockOutForm');
+        const exitReason = document.getElementById('exitReason');
+        const otherReasonGroup = document.getElementById('otherReasonGroup');
+        const employeeStatus = document.getElementById('employeeStatus');
+        const historyTable = document.getElementById('historyTable');
+        
+        clockInBtn.addEventListener('click', function() {
+            employeeStatus.innerHTML = 'Currently: <span class="status-badge status-in">Clocked In</span>';
+            clockOutForm.style.display = 'none';
+            
+            // Add new row to history table
+            const now = new Date();
+            const date = now.toLocaleDateString();
+            const time = now.toLocaleTimeString();
+            
+            const newRow = `
+                <tr>
+                    <td>${date}</td>
+                    <td>${time}</td>
+                    <td>--</td>
+                    <td>0m 0s</td>
+                    <td>--</td>
+                    <td><span class="status-badge status-in">Clocked In</span></td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn" data-index="0">Edit</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            
+            historyTable.innerHTML = newRow + historyTable.innerHTML;
+        });
+        
+        clockOutBtn.addEventListener('click', function() {
+            clock
