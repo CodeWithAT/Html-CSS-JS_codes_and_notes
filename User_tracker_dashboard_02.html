@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,6 +57,31 @@
             justify-content: center;
             color: #2563eb;
             font-weight: bold;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            margin-top: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.2s ease;
+        }
+
+        .nav-tab:hover {
+            color: #2563eb;
+        }
+
+        .nav-tab.active {
+            color: #2563eb;
+            border-bottom: 3px solid #2563eb;
         }
 
         /* Main Container */
@@ -276,7 +301,8 @@
         }
 
         .form-group select,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group input {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #e5e7eb;
@@ -285,7 +311,8 @@
         }
 
         .form-group select:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group input:focus {
             outline: none;
             border-color: #2563eb;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
@@ -326,154 +353,199 @@
             background-color: #1d4ed8;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .clock-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .search-filter {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .search-bar {
-                width: 100%;
-            }
-
-            .table-responsive {
-                overflow-x: auto;
-            }
+        /* Tab Content */
+        .tab-content {
+            display: none;
         }
 
-        /* Icons */
-        .icon {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            stroke-width: 0;
-            stroke: currentColor;
-            fill: currentColor;
-            vertical-align: middle;
+        .tab-content.active {
+            display: block;
         }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <span>⏱️</span>
-            <span>TimeTracker</span>
-        </div>
-        <div class="user-info">
-            <div class="user-avatar">JD</div>
-            <span>John Doe</span>
-        </div>
-    </header>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Clock Card -->
-        <div class="clock-card">
-            <div class="clock-header">
-                <div class="clock-info">
-                    <h2 id="current-date">Monday, March 17, 2025</h2>
-                    <p><span>🕒</span> <span id="current-time">09:41 AM</span></p>
-                </div>
-                <button id="clock-btn" class="clock-btn clock-in">
-                    <span>⏰</span>
-                    <span>Clock In</span>
-                </button>
-            </div>
-            <div id="clock-status" class="clock-status" style="display: none;">
-                <div class="clock-status-time">
-                    <span>⏱️</span>
-                    <span>Clocked in at: <span id="clock-in-time">08:30 AM</span></span>
-                </div>
-                <div class="clock-duration">
-                    Current session: <span id="session-duration">0h 0m</span>
-                </div>
-            </div>
-        </div>
+        /* Employee History */
+        .employee-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-        <!-- Search and Filter -->
-        <div class="search-filter">
-            <div class="search-bar">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Search by date, reason...">
-            </div>
-            <button class="filter-btn">
-                <span>📊</span>
-                <span>Filter</span>
-            </button>
-        </div>
+        .employee-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
 
-        <!-- Time Records Table -->
-        <div class="records-table">
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Clock In</th>
-                            <th>Clock Out</th>
-                            <th>Total Hours</th>
-                            <th>Reason</th>
-                        </tr>
-                    </thead>
-                    <tbody id="records-body">
-                        <!-- Table rows will be added by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+        .employee-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #dbeafe;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
 
-    <!-- Modal -->
-    <div id="exit-modal" class="modal-overlay">
-        <div class="modal">
-            <h3>Clock Out</h3>
-            <div class="form-group">
-                <label for="exit-reason">Reason for leaving</label>
-                <select id="exit-reason">
-                    <option value="">Select a reason</option>
-                    <option value="End of day">End of day</option>
-                    <option value="Lunch break">Lunch break</option>
-                    <option value="Doctor appointment">Doctor appointment</option>
-                    <option value="Personal errand">Personal errand</option>
-                    <option value="Remote work">Switching to remote work</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div id="other-reason-group" class="form-group" style="display: none;">
-                <label for="other-reason">Specify reason</label>
-                <textarea id="other-reason" rows="3" placeholder="Please specify your reason for leaving..."></textarea>
-            </div>
-            <div class="modal-footer">
-                <button id="cancel-btn" class="btn btn-cancel">Cancel</button>
-                <button id="confirm-btn" class="btn btn-confirm">Confirm Clock Out</button>
-            </div>
-        </div>
-    </div>
+        .employee-info {
+            flex: 1;
+        }
 
-    <script>
-        // Sample time records
-        let timeRecords = [
-            { date: 'March 14, 2025', clockIn: '08:45 AM', clockOut: '05:30 PM', totalHours: '8h 45m', reason: 'End of day' },
-            { date: 'March 13, 2025', clockIn: '09:02 AM', clockOut: '04:15 PM', totalHours: '7h 13m', reason: 'Doctor appointment' },
-            { date: 'March 12, 2025', clockIn: '08:30 AM', clockOut: '05:45 PM', totalHours: '9h 15m', reason: 'End of day' },
-            { date: 'March 11, 2025', clockIn: '08:15 AM', clockOut: '06:00 PM', totalHours: '9h 45m', reason: 'End of day' },
-        ];
+        .employee-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
 
-        // DOM elements
-        const currentDateEl = document.getElementById('current-date');
-        const currentTimeEl = document.getElementById('current-time');
-        const clockBtn = document.getElementById('clock-btn');
-        const clockStatus = document.getElementById('clock-status');
-        const clockInTimeEl = document.getElementById('clock-in-time');
-        const sessionDurationEl = document.getElementById('session-duration');
-        const searchInput = document.getElementById('search-input');
-        const records
+        .employee-position {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .employee-stats {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* Time History */
+        .time-history-wrapper {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .history-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .history-filter {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .history-filter button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            background-color: white;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .history-filter button.active {
+            background-color: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .time-chart {
+            height: 300px;
+            margin-bottom: 2rem;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            height: 250px;
+            gap: 20px;
+            padding: 0 20px;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background-color: #93c5fd;
+            position: relative;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            background-color: #3b82f6;
+        }
+
+        .chart-bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .chart-bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        /* Summary Stats */
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-stat {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-stat-title {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
