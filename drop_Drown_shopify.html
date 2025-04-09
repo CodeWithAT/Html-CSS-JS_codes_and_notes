@@ -1,0 +1,127 @@
+<div class="custom-dropdown-container">
+  <div class="dropdown-item">
+    <div class="dropdown-header">
+      <span class="dropdown-title">New Customers</span>
+      <div class="dropdown-icon">&#9660</div>
+    </div>
+    <div class="dropdown-content">
+      <p>Register here to buy or just explore our website hassle-free!</p>
+    </div>
+  </div>
+
+  <div class="dropdown-item">
+    <div class="dropdown-header">
+      <span class="dropdown-title">New Vendor</span>
+      <div class="dropdown-icon">&#9660</div>
+    </div>
+    <div class="dropdown-content">
+      <p>Register here to sell or just explore our website hassle-free!</p>
+    </div>
+  </div>
+
+  <div class="dropdown-item">
+    <div class="dropdown-header">
+      <span class="dropdown-title">Commercial Kitchen</span>
+      <div class="dropdown-icon">&#9660</div>
+    </div>
+    <div class="dropdown-content">
+      <p>Fill in our Registration form here and get volume discounts!</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-dropdown-container {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .main-heading {
+    text-align: center;
+    padding: 15px 0;
+    margin: 0;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .dropdown-item {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+
+  .dropdown-header:hover {
+    background-color: #f5f5f5;
+  }
+
+  .dropdown-title {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .dropdown-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown-content {
+    display: none;
+    padding: 0 20px;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-content.active {
+    display: block;
+    padding: 15px 20px;
+  }
+
+  .dropdown-item.active .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-content p {
+    margin: 0;
+  }
+</style>
+
+<script>
+  (function () {
+    setTimeout(function () {
+      var headers = document.querySelectorAll('.dropdown-header');
+
+      headers.forEach(function (header) {
+        header.addEventListener('click', function () {
+          var parentItem = header.parentElement;
+          var content = header.nextElementSibling;
+
+          // Close other open dropdowns
+          document.querySelectorAll('.dropdown-item').forEach(function (item) {
+            if (item !== parentItem) {
+              item.classList.remove('active');
+              item.querySelector('.dropdown-content').classList.remove('active');
+            }
+          });
+
+          // Toggle current dropdown
+          parentItem.classList.toggle('active');
+          content.classList.toggle('active');
+        });
+      });
+    }, 100);
+  })();
+</script>
